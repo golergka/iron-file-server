@@ -1,0 +1,9 @@
+[package]
+
+name = "iron-hello-world"
+version = "0.0.1"
+authors = ["golergka <golergka@gmail.com>"]
+
+[dependencies.iron]
+
+git = "https://github.com/iron/iron.git"
