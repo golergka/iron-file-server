@@ -1,15 +1,15 @@
 extern crate iron;
 extern crate getopts;
+extern crate static_file;
+extern crate mount;
 
 use std::os;
 use std::io::net::ip::Ipv4Addr;
-use iron::{Iron, Request, Response, IronResult};
-use iron::status;
-use getopts::{optopt, optflag, getopts, usage};
 
-fn hello_world(_:&mut Request) -> IronResult<Response> {
-    Ok(Response::with(status::Ok, "Hello world!"))
-}
+use iron::Iron;
+use static_file::Static;
+use mount::Mount;
+use getopts::{optopt, optflag, getopts, usage};
 
 fn main() {
     let args = os::args();
@@ -39,6 +39,13 @@ fn main() {
             return;
         }
     };
-    Iron::new(hello_world).listen(Ipv4Addr(127, 0, 0, 1), port);
-    println!("Running server on port {}", port);
+
+    let mut mount = Mount::new();
+    let path = Path::new(".");
+    let path_abs = os::make_absolute(&path);
+    mount.mount("/", Static::new(path));
+    Iron::new(mount).listen(Ipv4Addr(127, 0, 0, 1), port);
+    println!("Running simple server on port {}", port);
+    println!("Sering folder {}", path_abs.display());
+    println!("Press Ctrl-C to quit");
 }

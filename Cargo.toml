@@ -7,3 +7,11 @@ authors = ["golergka <golergka@gmail.com>"]
 [dependencies.iron]
 
 git = "https://github.com/iron/iron.git"
+
+[dependencies.static_file]
+
+git = "https://github.com/iron/static-file.git"
+
+[dependencies.mount]
+
+git = "https://github.com/iron/mount.git"
