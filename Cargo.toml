@@ -1,6 +1,6 @@
 [package]
 
-name = "iron-hello-world"
+name = "iron-file-server"
 version = "0.0.1"
 authors = ["golergka <golergka@gmail.com>"]
 
