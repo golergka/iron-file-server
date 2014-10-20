@@ -3,6 +3,7 @@ name = "iron-hello-world"
 version = "0.0.1"
 dependencies = [
  "iron 0.0.1 (git+https://github.com/iron/iron.git#f7edddd634b97d3150d92db88911472f27d95493)",
+ "logger 0.1.0 (git+https://github.com/iron/logger.git#7ace037e8a7af67779fe1bde2161236e53bbdbe7)",
  "mount 0.1.0 (git+https://github.com/iron/mount.git#940ee82b14f6ab87ffcffda155f0f3c775c83ab4)",
  "static_file 0.1.0 (git+https://github.com/iron/static-file.git#466ab9bc1b59b4b48be673e630facd944a87915e)",
 ]
@@ -71,6 +72,15 @@ dependencies = [
  "http 0.1.0-pre (git+https://github.com/chris-morgan/rust-http.git#ba43e05a5abdcc62b4a04b6a7fd6c634a8a4605a)",
  "iron 0.0.1 (git+https://github.com/iron/iron.git#f7edddd634b97d3150d92db88911472f27d95493)",
  "uuid 0.0.1 (git+https://github.com/rust-lang/uuid#c6159089a491ff4398c6d423263a085c95092a04)",
+]
+
+[[package]]
+name = "logger"
+version = "0.1.0"
+source = "git+https://github.com/iron/logger.git#7ace037e8a7af67779fe1bde2161236e53bbdbe7"
+dependencies = [
+ "http 0.1.0-pre (git+https://github.com/chris-morgan/rust-http.git#ba43e05a5abdcc62b4a04b6a7fd6c634a8a4605a)",
+ "iron 0.0.1 (git+https://github.com/iron/iron.git#f7edddd634b97d3150d92db88911472f27d95493)",
 ]
 
 [[package]]

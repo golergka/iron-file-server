@@ -2,14 +2,16 @@ extern crate iron;
 extern crate getopts;
 extern crate static_file;
 extern crate mount;
+extern crate logger;
 
 use std::os;
 use std::io::net::ip::Ipv4Addr;
 
-use iron::Iron;
+use iron::{Chain, ChainBuilder, Iron};
 use static_file::Static;
 use mount::Mount;
 use getopts::{optopt, optflag, getopts, usage};
+use logger::Logger;
 
 fn main() {
     let args = os::args();
@@ -40,11 +42,19 @@ fn main() {
         }
     };
 
-    let mut mount = Mount::new();
     let path = Path::new(".");
     let path_abs = os::make_absolute(&path);
+
+    let mut mount = Mount::new();
     mount.mount("/", Static::new(path));
-    Iron::new(mount).listen(Ipv4Addr(127, 0, 0, 1), port);
+
+    let (logger_before, logger_after) = Logger::new(None);
+    let mut chain = ChainBuilder::new(mount);
+    chain.link_before(logger_before);
+    chain.link_after(logger_after);
+
+    Iron::new(chain).listen(Ipv4Addr(127, 0, 0, 1), port);
+
     println!("Running simple server on port {}", port);
     println!("Sering folder {}", path_abs.display());
     println!("Press Ctrl-C to quit");
