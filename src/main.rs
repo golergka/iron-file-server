@@ -25,7 +25,7 @@ fn main() {
     };
 
     if matches.opt_present("h") {
-        println!("{}",usage("Simple RUST file server", opts));
+        println!("{}",usage("Simple Iron file server", opts));
         return;
     }
 
@@ -55,7 +55,7 @@ fn main() {
 
     Iron::new(chain).listen(Ipv4Addr(127, 0, 0, 1), port);
 
-    println!("Running simple RUST file server on port {}", port);
-    println!("Sering folder {}", path_abs.display());
+    println!("Running simple Iron file server on port {}", port);
+    println!("Sharing folder {}", path_abs.display());
     println!("Press Ctrl-C to quit");
 }
