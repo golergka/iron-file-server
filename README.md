@@ -17,7 +17,7 @@ Iron file server starts a HTTP server in the directory it is started from, servi
 
 ```bash
 $> iron-file-server -p 12345
-Running simple RUST file server on port 12345
-Sering folder /Users/golergka/Projects/rust/iron-file-server
+Running simple Iron file server on port 12345
+Sharing folder /path/to/your/project/folder
 Press Ctrl-C to quit
 ```
