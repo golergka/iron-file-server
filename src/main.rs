@@ -17,7 +17,8 @@ fn main() {
     let args = os::args();
     let opts = [
         optopt("p", "port", "set server port", "PORT"),
-        optflag("h", "help", "print this help menu")
+        optflag("h", "help", "print this help menu"),
+        optflag("l", "log", "log each request")
     ];
     let matches = match getopts(args.tail(), opts) {
         Ok(m) => { m },
@@ -48,10 +49,12 @@ fn main() {
     let mut mount = Mount::new();
     mount.mount("/", Static::new(path));
 
-    let (logger_before, logger_after) = Logger::new(None);
     let mut chain = ChainBuilder::new(mount);
-    chain.link_before(logger_before);
-    chain.link_after(logger_after);
+    if matches.opt_present("l") {
+        let (logger_before, logger_after) = Logger::new(None);
+        chain.link_before(logger_before);
+        chain.link_after(logger_after);
+    }
 
     Iron::new(chain).listen(Ipv4Addr(127, 0, 0, 1), port);
 
