@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/golergka/iron-file-server.svg?branch=master)](https://travis-ci.org/golergka/iron-file-server)
 iron-file-server
 ================
 
