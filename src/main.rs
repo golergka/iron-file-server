@@ -16,6 +16,7 @@ use logger::Logger;
 fn main() {
     let args = os::args();
     let opts = [
+        optopt("f", "folder", "foler to share", "FOLDER"),
         optopt("p", "port", "set server port", "PORT"),
         optflag("h", "help", "print this help menu"),
         optflag("l", "log", "log each request")
@@ -43,7 +44,12 @@ fn main() {
         }
     };
 
-    let path = Path::new(".");
+    let path_opt = matches.opt_str("f");
+    let path_str = match path_opt {
+        Some(string)    => string,
+        None            => ".".to_string()
+    };
+    let path = Path::new(path_str);
     let path_abs = os::make_absolute(&path);
 
     let mut mount = Mount::new();
